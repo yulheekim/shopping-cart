@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import data from '../../assets/products.json';
 import _ from 'lodash';
 
-// import {
-// } from '../../components';
+import {
+    Item
+} from '../../components';
 // import {
 // } from '../../reducers/reducer';
 // import './styles.css';
@@ -14,10 +15,11 @@ import _ from 'lodash';
 // import AppBar from '../../components/Heading/AppBar.js';
 
 class ItemsComponent extends Component {
-    populateProductTitles = (products) => {
+    populateItemCards = (products) => {
         return _.map(products, (product, index) => {
             return (
-                <div key={index}>{product.title}</div>
+                <Item key={index} idx={index}/>
+
             )
         }
         
@@ -26,10 +28,7 @@ class ItemsComponent extends Component {
     render() {
         return (
             <div>
-                {this.populateProductTitles(data.products)}
-                {/* <Button variant="contained" color="primary">
-                    Add to Cart
-                </Button> */}
+                {this.populateItemCards(data.products)}
             </div>
         );
     }
