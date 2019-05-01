@@ -15,7 +15,7 @@
 }
 .cartItem {
     padding: 2px;
-    border: black 1px solid;
+    border-bottom: grey 1px solid;
     
 }
 .cartProductImg {
@@ -24,4 +24,11 @@
 }
 .cartInfo {
     display: inline-block;
+}
+.trash {
+    text-align: right;
+    width: fit-content;
+    display: inline-block;
+    float: right;
+    margin: 2%;
 }

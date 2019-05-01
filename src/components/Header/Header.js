@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Fab, Modal } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { Link } from 'react-router-dom';
 import data from '../../assets/products.json';
 import _ from 'lodash';
 import './styles.css';
 
 import {
+    delete_item_cart,
     toggle_modal
 } from '../../reducers/reducer';
 
@@ -15,6 +17,9 @@ import {
 class HeaderComponent extends Component {
     handleToggleModal() {
         this.props.toggle_modal();
+    }
+    deleteItemCart(pid) {
+        this.props.delete_item_cart(pid);
     }
     populateCartItems = () => {
         return _.map(this.props.itemsCart, (product_id, index) => {
@@ -28,6 +33,9 @@ class HeaderComponent extends Component {
                         {product.description}<br/>
                         {product.currencyFormat + product.price}<br/>
                         Amount: 1
+                    </div>
+                    <div className="trash">
+                        <DeleteIcon onClick={()=> this.deleteItemCart(product_id)} />
                     </div>
                 </div>
             )
@@ -71,5 +79,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export const Header = connect(mapStateToProps, {
+    delete_item_cart,
     toggle_modal
 })(HeaderComponent);

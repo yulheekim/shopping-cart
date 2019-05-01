@@ -1,5 +1,6 @@
 
 export const ADD_ITEM_CART = 'shopping-cart/ADD_ITEM_CART';
+export const DELETE_ITEM_CART = 'shopping-cart/DELETE_ITEM_CART';
 export const TOGGLE_MODAL = 'shopping-cart/TOGGLE_MODAL';
 
 const INITIAL_STATE = {
@@ -12,7 +13,13 @@ export default function reducer(state = INITIAL_STATE, action) {
         case ADD_ITEM_CART:
             var new_itemsCart = state.itemsCart;
             new_itemsCart.push(action.payload);
-            console.log(new_itemsCart)
+            return {
+                ...state,
+                itemsCart: new_itemsCart
+            };
+        case DELETE_ITEM_CART:
+            var new_itemsCart = state.itemsCart;
+            new_itemsCart = new_itemsCart.filter(e => e !== action.payload);
             return {
                 ...state,
                 itemsCart: new_itemsCart
@@ -38,7 +45,14 @@ export const add_item_cart = (iid) => {
         })
     }
 }
-
+export const delete_item_cart = (iid) => {
+    return (dispatch) => {
+        dispatch({
+            type: DELETE_ITEM_CART,
+            payload: iid
+        })
+    }
+}
 export const toggle_modal = () => {
     return (dispatch) => {
         dispatch({
