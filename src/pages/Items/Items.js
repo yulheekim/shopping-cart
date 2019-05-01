@@ -6,11 +6,13 @@ import data from '../../assets/products.json';
 import _ from 'lodash';
 
 import {
-    Item
+    Header,
+    Item,
+    Size
 } from '../../components';
 // import {
 // } from '../../reducers/reducer';
-// import './styles.css';
+import './styles.css';
 
 // import AppBar from '../../components/Heading/AppBar.js';
 
@@ -19,7 +21,6 @@ class ItemsComponent extends Component {
         return _.map(products, (product, index) => {
             return (
                 <Item key={index} idx={index}/>
-
             )
         }
         
@@ -27,8 +28,14 @@ class ItemsComponent extends Component {
     }
     render() {
         return (
-            <div>
-                {this.populateItemCards(data.products)}
+            <div className="whole">
+                <Header />
+                <div className="lower">
+                    <Size />
+                    <div className="catalog">
+                        {this.populateItemCards(data.products)}
+                    </div>
+                </div>
             </div>
         );
     }

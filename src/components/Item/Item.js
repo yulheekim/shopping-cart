@@ -20,7 +20,7 @@ const styles = {
         position: 'relative',
         display: 'inline-block',
         padding: '1rem 0',
-        margin: '1rem'
+        margin: '.5rem'
     },
     addCartButton: {
         marginTop: '0.5rem'
@@ -34,9 +34,8 @@ class ItemComponent extends Component {
                     <img src={require("../../assets/products/" + product.sku + "_1.jpg")} alt="shirt img" className="productImg"/>
                     <br/>
                     <div className="title">{product.title}</div>
-                    <div className="price">
-                        {product.currencyFormat + product.price}
-                    </div>
+                    <div className="price">{product.currencyFormat + product.price}</div>
+                    <div className="description">{product.description}</div>
                 <Button variant="contained" color="primary" className={this.props.classes.addCartButton}>
                     Add to Cart
                 </Button>                

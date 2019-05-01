@@ -1,9 +1,16 @@
-export const AAA = 'shopping-cart/AAA';
+export const TOGGLE_MODAL = 'shopping-cart/TOGGLE_MODAL';
+
 const INITIAL_STATE = {
+    modalOpen: false
 }
 
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type){
+        case TOGGLE_MODAL:
+            return {
+                ...state,
+                modalOpen: !state.modalOpen,
+            }
         default:
             return {
                 ...state
@@ -12,11 +19,10 @@ export default function reducer(state = INITIAL_STATE, action) {
 }
 
 //Action Creators
-// export const set_move_index = (move_index) => {
-//     return (dispatch) => {
-//         dispatch({
-//             type: SET_MOVE_INDEX,
-//             payload: move_index
-//         })
-//     }
-// }
+export const toggle_modal = () => {
+    return (dispatch) => {
+        dispatch({
+            type: TOGGLE_MODAL,
+        })
+    }
+}
