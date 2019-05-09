@@ -1,11 +1,13 @@
 
 export const ADD_ITEM_CART = 'shopping-cart/ADD_ITEM_CART';
 export const DELETE_ITEM_CART = 'shopping-cart/DELETE_ITEM_CART';
+export const HANDLE_SIZE_CLICK = 'shopping-cart/HANDLE_SIZE_CLICK'; 
 export const TOGGLE_MODAL = 'shopping-cart/TOGGLE_MODAL';
 
 const INITIAL_STATE = {
     modalOpen: false,
-    itemsCart: []
+    itemsCart: [],
+    selectedSize: [],
 }
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -24,6 +26,23 @@ export default function reducer(state = INITIAL_STATE, action) {
                 ...state,
                 itemsCart: new_itemsCart
             };
+        case HANDLE_SIZE_CLICK:
+            var new_selectedSize = state.selectedSize;
+            if (!state.selectedSize.some(e => e === action.payload)) {
+                return {
+                    ...state,
+                    selectedSize: [
+                        ...state.selectedSize,
+                        action.payload
+                    ]
+                }
+            }
+            else {
+                return {
+                    ...state,
+                    selectedSize: state.selectedSize.filter(e => e !== action.payload)
+                }
+            }
         case TOGGLE_MODAL:
             return {
                 ...state,
@@ -53,6 +72,16 @@ export const delete_item_cart = (iid) => {
         })
     }
 }
+
+export const handle_size_click = (size) => {
+    return (dispatch) => {
+        dispatch({
+            type: HANDLE_SIZE_CLICK,
+            payload: size
+        })
+    }
+}
+
 export const toggle_modal = () => {
     return (dispatch) => {
         dispatch({

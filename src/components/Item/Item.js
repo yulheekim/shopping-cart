@@ -11,6 +11,7 @@ import {
 
 import './styles.css';
 import styles from './styles';
+import { isNoSubstitutionTemplateLiteral } from 'typescript';
 const {
     addCartButton,
     itemCard
@@ -26,18 +27,26 @@ class ItemComponent extends Component {
 
     render() {
         var product = data.products[this.props.idx]
-        return (
-            <Card style={itemCard}>
-                    <img src={require("../../assets/products/" + product.sku + "_1.jpg")} alt="shirt img" className="productImg"/>
-                    <br/>
-                    <div className="title">{product.title}</div>
-                    <div className="price">{product.currencyFormat + product.price}</div>
-                    <div className="description">{product.description}</div>
-                <Button variant="contained" color="primary" style={addCartButton} onClick={() => this.addItem(product.id)}>
-                    Add to Cart
-                </Button>                
-            </Card>
-        );
+        if (this.props.selectedSize.some(e => product.availableSizes.includes(e)) || this.props.selectedSize.length === 0) {
+            return (
+                <Card style={itemCard}>
+                        <img src={require("../../assets/products/" + product.sku + "_1.jpg")} alt="shirt img" className="productImg"/>
+                        <br/>
+                        <div className="title">{product.title}</div>
+                        <div className="price">{product.currencyFormat + product.price}</div>
+                        <div className="description">{product.description}</div>
+                    <Button variant="contained" color="primary" style={addCartButton} onClick={() => this.addItem(product.id)}>
+                        Add to Cart
+                    </Button>                
+                </Card>
+            );
+        }
+        else {
+            return (
+                null
+            )
+        }
+        
     }
 }
 
@@ -46,9 +55,10 @@ export {ItemComponent};
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { } = reducer;
+    const { selectedSize, } = reducer;
     return {
         ...ownProps,
+        selectedSize,
 
     };
 };

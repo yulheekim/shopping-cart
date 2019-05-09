@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Fab, Modal } from '@material-ui/core';
+import { Button, Modal } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import data from '../../assets/products.json';
 import _ from 'lodash';
 import './styles.css';
@@ -47,7 +47,9 @@ class HeaderComponent extends Component {
         var product = data.products[this.props.idx]
         return (
             <div className="header">
-                <Button variant="contained" onClick={()=>this.handleToggleModal()}>Cart</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <h1>Cute T-Shirts</h1>
+                <div className="cartButton"><Button variant="contained" onClick={()=>this.handleToggleModal()}>Cart</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                
                 <Modal
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
